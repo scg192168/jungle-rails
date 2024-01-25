@@ -74,3 +74,10 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end
+
+# config/environments/development.rb
+Rails.application.configure do
+  config.middleware.use(Rack::Auth::Basic) do |username, password|
+    username == ENV['BASIC_AUTH_USERNAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+  end
+end

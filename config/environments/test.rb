@@ -58,3 +58,10 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 end
+
+# config/environments/test.rb
+Rails.application.configure do
+  config.middleware.use(Rack::Auth::Basic) do |username, password|
+    username == 'test' && password == 'test'
+  end
+end
