@@ -11,3 +11,24 @@
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
+
+<!-- app/views/orders/show.html.erb -->
+<h1>Order Details</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'line_item', collection: @line_items %>
+  </tbody>
+</table>
+
+<p><strong>Final Amount:</strong> <%= humanized_money_with_symbol(@order.total_cents/100.0) %></p>
+<p><strong>Email:</strong> <%= @order.email %></p>
